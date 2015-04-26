@@ -38,6 +38,18 @@ end
   end
 end
 
+if node['goiardi']['use_shovey']
+  include_recipe 'serf'
+end
+
+file node['goiardi']['shovey_pem_filename'] do
+  mode '0400'
+  owner 'root'
+  group 'root'
+  content node['goiardi']['shovey_pem']
+  only_if { node['goiardi']['use_shovey'] }
+end
+
 template node['goiardi']['config'] do
   source 'goiardi.conf.erb'
   mode '0444'
@@ -53,6 +65,9 @@ template node['goiardi']['config'] do
     json_req_max_size: node['goiardi']['json_req_max_size'],
     log_file: node['goiardi']['log_file'],
     syslog: node['goiardi']['syslog'],
-    log_level: node['goiardi']['log_level']
+    log_level: node['goiardi']['log_level'],
+    use_shovey: node['goiardi']['use_shovey'],
+    serf_addr: node['goiardi']['serf_addr'],
+    shovey_pem: node['goiardi']['shovey_pem_filename']
   )
 end

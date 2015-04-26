@@ -7,5 +7,6 @@ long_description 'Installs/Configures goiardi'
 version          '0.2.0'
 
 depends          'runit'
+depends		 'serf', '~> 0.9.0'
 
 supports         'ubuntu', '>= 12.04'

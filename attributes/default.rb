@@ -34,3 +34,7 @@ default['goiardi']['json_req_max_size'] = '1000000'
 default['goiardi']['log_file'] = nil
 default['goiardi']['syslog'] = true
 default['goiardi']['log_level'] = 'critical'
+default['goiardi']['use_shovey'] = false
+default['goiardi']['serf_addr'] = "127.0.0.1:7373"
+default['goiardi']['shovey_pem'] = nil
+default['goiardi']['shovey_pem_filename'] = "#{node['goiardi']['confdir']}/shovey.pem"

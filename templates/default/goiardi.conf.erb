@@ -38,3 +38,19 @@ json-req-max-size = <%= @json_req_max_size %>
 # in-memory mode (standard behavior is to keep the files in memory), and
 # mandatory for SQL mode.
 local-filestore-dir = "<%= @rundir %>/file_checksums"
+
+<% if @use_shovey %>
+# Have goiardi send and receive events and queries from a serf cluster. Required
+# for shovey
+use-serf = true
+
+# IP address and port for RPC connection with a serf agent. Defaults to
+# 127.0.0.1:7373
+serf-addr = "<%= @serf_addr %>"
+
+# Enable using shovey for sending jobs to nodes. Requires use-serf.
+use-shovey = true
+
+# Path to RSA private key used to sign shovey requests.
+sign-priv-key = "<%= @shovey_pem %>"
+<% end %>
